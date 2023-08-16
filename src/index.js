@@ -4,17 +4,17 @@ import { toJson } from './semantics.js';
 
 const removeEmptyLines = str => str.split(/\r?\n/).filter(line => line.trim() !== '').join('\n');
 
-export function convert(sql){
+export function convert(sql) {
     let result;
     sql = removeEmptyLines(sql);
     console.log(grammarSource);
-    const g  = ohm.grammar(grammarSource.grammarSource);
-    const semantics = g.createSemantics().addOperation("toJson",toJson);
+    const g = ohm.grammar(grammarSource.grammarSource);
+    const semantics = g.createSemantics().addOperation("toJson", toJson);
     const m = g.match(sql);
-    if (m.succeeded()){
+    if (m.succeeded()) {
         result = semantics(m).toJson();
-    }else {
+    } else {
         result = m.message
     }
-    return JSON.stringify(result,null,2);
+    return JSON.stringify(result, null, 2);
 }

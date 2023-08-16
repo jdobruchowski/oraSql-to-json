@@ -1,4 +1,4 @@
-exports.grammarSource = String.raw `
+exports.grammarSource = String.raw`
 Arithmetic {
 
   Program = Statement*
