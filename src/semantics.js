@@ -15,19 +15,38 @@ exports.toJson =
             type: 'createTable',
             tableName: name.sourceString,
             columns: cc,
+            sourceString : this.sourceString
         };
     },
     columnDefinition(name, a, dataType) {
         return {
             type: 'columnDefinition',
             columnName: name.sourceString,
+            "dataType": dataType.sourceString,
+            sourceString : this.sourceString
         };
     },
     columnDefinition(name, a, dataType, b, c, d, f, e) {
         return {
             type: 'columnDefinition',
             columnName: name.sourceString,
+            gerate: b.sourceString,
+            check: c.sourceString,
+            constraint: d.toJson(),
+            pkcons: f.sourceString,
+            notNull: e.sourceString,
+            sourceString : this.sourceString,
+            "dataType": dataType.sourceString,
         };
+    },
+    constraint(a,b,c,d,e,f,g,h,i,j){
+        return {
+            type:'columnConstraint',
+            name:d.sourceString,
+            table:h.sourceString,
+            cascade:j.sourceString,
+            sourceString : this.sourceString
+        }
     },
     name(a, b) {
         return this.sourceString;
@@ -38,14 +57,31 @@ exports.toJson =
     comment(a, b, c) {
         return {
             type: 'comment',
-            value: this.sourceString
+            value: this.sourceString,
+            sourceString : this.sourceString
         }
     },
     ddlcomment(a, b, obj, c, d, f, txt, e) {
+        let commObj = obj.toJson();
         return {
             type: 'ddlcomment',
-            object: obj.sourceString,
-            val: txt.sourceString
+            objType: obj.ctorName,
+            tableName: commObj.tableName,
+            columnName: commObj.columnName,
+            val: txt.sourceString,
+            sourceString : this.sourceString
+        }
+    },
+    ddlCommentTable(a,b,c){
+        return {
+            tableName:c.sourceString,
+            columnName: null
+        }
+    },
+    ddlCommentColumn(a,b,c,d,e){
+        return {
+            tableName:c.sourceString,
+            columnName:e.sourceString
         }
     },
     ddlIndex(a, b, indexName, c, d, e, tableName, f, g, columnName, h) {
@@ -53,9 +89,13 @@ exports.toJson =
             type: 'ddlIndex',
             indName: indexName.sourceString,
             tblName: tableName.sourceString,
-            clnName: columnName.sourceString
+            clnName: columnName.sourceString,
+            sourceString : this.sourceString
         }
-    }
+    },
+    _iter(...children) {
+        return children.map(c => c.toJson());
+      }
 
 
 }

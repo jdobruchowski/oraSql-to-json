@@ -48,6 +48,10 @@
     <h2>Pretty Printed JSON</h2>
     <div id="jsonOutput" class="json-content"></div>
   </div>
+  <div class="section">
+    <h2>Refactor</h2>
+    <div id="jsonOutput2" class="json-content"></div>
+  </div>
   <script src="../../dist/orasql-to-json.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.2.0/jsoneditor.min.js"></script>
 
@@ -55,7 +59,7 @@
     const parseButton = document.getElementById("parseButton");
     const textInput = document.getElementById("textInput");
     const jsonOutput = document.getElementById("jsonOutput");
-
+    const jsonOutput2 = document.getElementById("jsonOutput2");
 
       const editorOptions = {
     modes: ['tree', 'view'], // Choose desired modes (tree, view, form, text)
@@ -63,13 +67,14 @@
   };
 
   const editor = new JSONEditor(jsonOutput, editorOptions);
-
+  const editor2 = new JSONEditor(jsonOutput2, editorOptions);
   parseButton.addEventListener("click", () => {
     const inputText = textInput.value;
-
-      const parsedJson= JSON.parse(  orasqlJson.convert(inputText));
+    const outputJson = orasqlJson.convert(inputText)
+      const parsedJson= outputJson;
       console.log(parsedJson);
       editor.set(parsedJson); // Set JSON data in the editor
+      editor2.set(orasqlJson.refactor([],outputJson))
 
   });
 
