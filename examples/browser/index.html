@@ -74,7 +74,9 @@
       const parsedJson= outputJson;
       console.log(parsedJson);
       editor.set(parsedJson); // Set JSON data in the editor
-      editor2.set(orasqlJson.refactor([],outputJson))
+      const refac =orasqlJson.refactor([],outputJson)
+      editor2.set(refac)
+      orasqlJson.createFiles([],refac);
 
   });
 

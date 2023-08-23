@@ -8,20 +8,13 @@ Arithmetic {
 
   CreateTable
     = "create" "table" name "(" columnDefinition ("," columnDefinition)* ")" spaces ";"
-
-  //columnDefinitiona
-  //  =  name spaces generatedTypeConstraint spaces notNull
-  //  | name spaces generatedType spaces notNull
-  //  | name spaces fkConstraint spaces notNull
-  //  | name spaces dataType spaces notNull
    
    columnDefinition =
        name spaces dataType generated? check? constraint? pkconstraint? notNull?
     
     generatedType = dataType spaces generated
     
-    //generatedTypeConstraint = dataType spaces generated spaces pkconstraint
-    
+
     fkConstraint = spaces dataType spaces constraint
     
     notNull = spaces "not null" 
@@ -51,3 +44,4 @@ Arithmetic {
 }
 
   `;
+
