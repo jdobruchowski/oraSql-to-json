@@ -95,7 +95,16 @@ exports.toJson =
     },
     _iter(...children) {
         return children.map(c => c.toJson());
-      }
+      },
+    Trigger(a,b,c,d,e,f,g){
+        return{
+            type: 'trigger',
+            name: b.sourceString,
+            tblName: e.sourceString,
+            body: g.sourceString,
+            sourceString: this.sourceString,
+        }
+    }
 
 
 }

@@ -74,9 +74,21 @@
       const parsedJson= outputJson;
       console.log(parsedJson);
       editor.set(parsedJson); // Set JSON data in the editor
-      const refac =orasqlJson.refactor([],outputJson)
+      let rconfig = {
+        schema: 'sc_core'
+      };
+      const refac =orasqlJson.refactor(rconfig,outputJson);
       editor2.set(refac)
-      orasqlJson.createFiles([],refac);
+      let config = {
+        tableChangelog:'--changeset jdobruchowski:createTable runOnChange:false stripComments:false',
+        indexChangelog:'\n--changeset jdobruchowski:createindex runOnChange:false stripComments:false',
+        commentChangelog:'\n--changeset jdobruchowski:createComments runOnChange:false stripComments:false',
+        constraintChangelog:'--changeset jdobruchowski:{{fkTable}} runOnChange:false stripComments:false',
+        triggerChangelog:'--changeset jdobruchowski:createTrigger runOnChange:true stripComments:false',
+        fileprefix:'--liquibase formatted sql'
+
+      }
+      orasqlJson.createFiles(config,refac);
 
   });
 
