@@ -1,7 +1,7 @@
 {
   "name": "orasql-to-json",
   "version": "1.0.0",
-  "description": "",
+  "description": "Library to parse Oracle flavored SQL into json",
   "main": "dist/webpack-numbers.js",
   "directories": {
     "example": "examples"
@@ -17,7 +17,15 @@
     "jszip": "^3.10.1",
     "mustache": "^4.2.0",
     "ohm-js": "^17.1.0",
-    "webpack": "^5.88.2",
+    "webpack": "^5.90.3",
     "webpack-cli": "^5.1.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdobruchowski/oraSql-to-json.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jdobruchowski/oraSql-to-json/issues"
+  },
+  "homepage": "https://github.com/jdobruchowski/oraSql-to-json#readme"
 }

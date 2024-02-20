@@ -15,3 +15,7 @@ examples/browser/example_input.txt -- Sample input that can be prased
 
 ## Dependencies
 Ohm-js https://ohmjs.org/
+
+## Building
+npm install webpack webpack-cli
+npx webpack --mode 'development'
